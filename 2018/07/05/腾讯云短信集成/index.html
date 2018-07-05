@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        腾讯云短信集成 - KomaTshu的博客 | KomaTshu&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Let Bygones Be Bygones </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>KomaTshu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Let Bygones Be Bygones </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        腾讯云短信集成
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-05 21:16:47</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p><strong>keywords：</strong>短信平台、libphonenumber</p>
+<p><strong>背景：</strong>支持对国内外手机号发送短信</p>
+<p><strong>要求：</strong>腾讯云账号，企业认证资格</p>
+<p><strong>实现过程：</strong></p>
+<ol>
+<li><p>引短信平台的pom：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;com.github.qcloudsms&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;qcloudsms&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;1.0.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用短信发送接口</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 短信应用SDK AppID</span><br><span class="line">  int appId = Integer.valueOf(systemConfigService.selectByConfigKey(&quot;tencent.appId&quot;).getConfigValue()); // 1400开头</span><br><span class="line">  // 短信应用SDK AppKey</span><br><span class="line">  String appKey = systemConfigService.selectByConfigKey(&quot;tencent.appKey&quot;).getConfigValue();</span><br><span class="line">  // 短信模板ID，需要在短信应用中申请</span><br><span class="line">  int templateId = Integer.valueOf(systemConfigService.selectByConfigKey(&quot;tencent.templateId&quot;).getConfigValue());</span><br><span class="line">	// 签名</span><br><span class="line">  String smsSign = systemConfigService.selectByConfigKey(&quot;tencent.smsSign&quot;).getConfigValue();</span><br><span class="line">  try &#123;</span><br><span class="line">          String[] params = &#123;randomNum&#125;;</span><br><span class="line">          SmsSingleSender ssender = new SmsSingleSender(appId, appKey);</span><br><span class="line">          PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();</span><br><span class="line">          Phonenumber.PhoneNumber numberProto = phoneUtil.parse(mobile, &quot;&quot;);</span><br><span class="line">          int nationCode = numberProto.getCountryCode();</span><br><span class="line">          int nationCodeLength = String.valueOf(nationCode).length();</span><br><span class="line">          mobile = mobile.substring(nationCodeLength+1);</span><br><span class="line">          SmsSingleSenderResult result = ssender.sendWithParam(String.valueOf(nationCode), mobile,</span><br><span class="line">          templateId, params, smsSign, &quot;&quot;, &quot;&quot;);  // 签名参数未提供或者为空时，会使用默认签名发送短信</span><br><span class="line">          if(result.result == 0)&#123;</span><br><span class="line">              return true;</span><br><span class="line">          &#125;else&#123;</span><br><span class="line">              return false;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125; catch (HTTPException e) &#123;</span><br><span class="line">             // HTTP响应码错误</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">       &#125; catch (JSONException e) &#123;</span><br><span class="line">             // json解析错误</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">             // 网络IO错误</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">       &#125; catch (NumberParseException e) &#123;</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><em>注：</em><br>其中，appId和appKey是在腾讯云操作平台开通短信功能新建应用之后获取；短信发送需要设置签名和内容，短信模板ID是设置内容后获取；签名需要和设置的签名内容一致；</p>
+<p><strong>在集成发送短信验证码过程中，需要从号码中提取出国家冠码，解决思路：</strong></p>
+<blockquote>
+<ol>
+<li>将手机号国家冠码维护到数据库中，代码层匹配，提取出国家冠码；</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>由于方法一太死板，所以在网上找了Google的jar包，可以直接调用jar包方法</li>
+</ol>
+</blockquote>
+<p>实现过程：**</p>
+<ol>
+<li><p>引入libphonenumber jar包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;com.googlecode.libphonenumber&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;libphonenumber&lt;/artifactId&gt;</span><br><span class="line">   &lt;version&gt;8.9.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用utils内的方法：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();</span><br><span class="line">Phonenumber.PhoneNumber numberProto = phoneUtil.parse(mobile, &quot;&quot;);</span><br><span class="line">int nationCode = numberProto.getCountryCode();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此外，libphonenumber还有很多其他的方法可以对手机号进行校验，获取国家地区等等。</p>
+<p>参考：<br><br><a href="https://github.com/qcloudsms/qcloudsms_java" target="_blank" rel="noopener">https://github.com/qcloudsms/qcloudsms_java</a><br><br><a href="https://github.com/googlei18n/libphonenumber/" target="_blank" rel="noopener">https://github.com/googlei18n/libphonenumber/</a></p>
+
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>Email：komatshu324@gmail.com</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</html>
