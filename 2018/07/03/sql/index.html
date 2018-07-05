@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        sql记录 - KomaTshu的博客 | KomaTshu&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Let Bygones Be Bygones </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>KomaTshu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询表数量"><span class="toc-text">查询表数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库解锁"><span class="toc-text">数据库解锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取一段时间内的数据"><span class="toc-text">取一段时间内的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库添加索引"><span class="toc-text">数据库添加索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询数据库日志（oracle）"><span class="toc-text">查询数据库日志（oracle）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建临时表"><span class="toc-text">创建临时表</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Let Bygones Be Bygones </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        sql记录
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-03 09:29:24</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h4 id="查询表数量"><a href="#查询表数量" class="headerlink" title="查询表数量"></a>查询表数量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count( * ) FROM information_schema.tables WHERE TABLE_SCHEMA = &apos;库名&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="数据库解锁"><a href="#数据库解锁" class="headerlink" title="数据库解锁"></a>数据库解锁</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select object_name,machine,s.sid,s.serial#</span><br><span class="line">from v$locked_object l,dba_objects o ,v$session s</span><br><span class="line">where l.object_id　=　o.object_id and l.session_id=s.sid;</span><br><span class="line"></span><br><span class="line">alter system kill session &apos;3875,17954&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="取一段时间内的数据"><a href="#取一段时间内的数据" class="headerlink" title="取一段时间内的数据"></a>取一段时间内的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--本周的</span><br><span class="line">select * from table  where DTIME &gt;=trunc(next_day(sysdate-8,1)+1) and DTIME&lt;=trunc(next_day(sysdate-8,1)+7)+1 ;</span><br><span class="line">--本周的（国外）</span><br><span class="line">select * from table  where DTIME &gt;=trunc(next_day(sysdate-8,1)) and DTIME&lt;=trunc(next_day(sysdate-8,1)+7)； </span><br><span class="line"></span><br><span class="line">--本月的</span><br><span class="line">select * from table  where  DTIME &gt;=TRUNC(SYSDATE, &apos;MM&apos;)  and DTIME&lt;=last_day(SYSDATE);  </span><br><span class="line"></span><br><span class="line">--本年的</span><br><span class="line">select * from table where to_char(DTIEM,&apos;yyyy&apos;)=to_char(sysdate,&apos;yyyy&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="数据库添加索引"><a href="#数据库添加索引" class="headerlink" title="数据库添加索引"></a>数据库添加索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create index INDEX_NAME on FND_USER(USER_NAME)</span><br><span class="line">  tablespace NDNS</span><br><span class="line">  pctfree 10</span><br><span class="line">  initrans 2</span><br><span class="line">  maxtrans 255</span><br><span class="line">  storage</span><br><span class="line">  (</span><br><span class="line">    initial 64K</span><br><span class="line">    minextents 1</span><br><span class="line">    maxextents unlimited</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<h4 id="查询数据库日志（oracle）"><a href="#查询数据库日志（oracle）" class="headerlink" title="查询数据库日志（oracle）"></a>查询数据库日志（oracle）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">select * from v$sql;</span><br><span class="line"></span><br><span class="line">select * from v$sqlarea; </span><br><span class="line"></span><br><span class="line">SELECT b.sql_text, --content of SQL</span><br><span class="line">a.machine, --which machine run this code</span><br><span class="line">a.username, a.module, -- the method to run this SQL</span><br><span class="line">c.sofar / totalwork * 100, --conplete percent</span><br><span class="line">c.elapsed_seconds, --run time</span><br><span class="line">c.time_remaining --remain to run time</span><br><span class="line">FROM v$session a, v$sqlarea b, v$session_longops c</span><br><span class="line">WHERE a.sql_hash_value = b.hash_value(+) AND a.SID = c.SID(+)</span><br><span class="line">AND a.serial# = c.serial#(+)</span><br><span class="line">--AND a.sid=139</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">查询最影响性能的十条sql</span><br><span class="line">SELECT * FROM (select PARSING_USER_ID,EXECUTIONS,SORTS, </span><br><span class="line">COMMAND_TYPE,DISK_READS,sql_text FROM v$sqlarea </span><br><span class="line">order BY disk_reads DESC )where ROWNUM&lt;10 ;</span><br></pre></td></tr></table></figure>
+<h4 id="创建临时表"><a href="#创建临时表" class="headerlink" title="创建临时表"></a>创建临时表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE GLOBAL TEMPORARY TABLE TEST_T(TT VARCHAR2(200)) ON COMMIT DELETE ROWS;</span><br></pre></td></tr></table></figure>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>Email：komatshu324@gmail.com</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</html>

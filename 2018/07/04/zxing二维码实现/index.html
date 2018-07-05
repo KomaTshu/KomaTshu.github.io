@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        zxing生成二维码 - KomaTshu的博客 | KomaTshu&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Let Bygones Be Bygones </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>KomaTshu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现："><span class="toc-text">业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现：</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Let Bygones Be Bygones </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        zxing生成二维码
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-04 20:41:54</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h4 id="业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现："><a href="#业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现：" class="headerlink" title="业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现："></a>业务场景中，会有扫描二维码跳转链接的功能，maven项目中，我们可以借助zxing来实现：</h4><ol>
+<li><p>Maven Repository里查询zxing的maven依赖，复制到工程的pom.xml文件中</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   	&lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</span><br><span class="line">   	&lt;artifactId&gt;core&lt;/artifactId&gt;</span><br><span class="line">   	&lt;version&gt;3.3.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二维码的生成需要借助MatrixToImageWriter类，该类是由Google提供的，可以将该类拷贝到源码中，MatrixToImageWriter类中提供了两个方法：writeToFile 将二维码输出到文件、writeToStream将二维码输出到流：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public final class MatrixToImageWriter &#123;</span><br><span class="line"></span><br><span class="line">   	private static final int BLACK = 0xFF000000;</span><br><span class="line">   	private static final int WHITE = 0xFFFFFFFF;</span><br><span class="line"></span><br><span class="line">   	private MatrixToImageWriter() &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   	public static BufferedImage toBufferedImage(BitMatrix matrix) &#123;</span><br><span class="line">       	int width = matrix.getWidth();</span><br><span class="line">       	int height = matrix.getHeight();</span><br><span class="line">       	BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">       	for (int x = 0; x &lt; width; x++) &#123;</span><br><span class="line">           	for (int y = 0; y &lt; height; y++) &#123;</span><br><span class="line">               	image.setRGB(x, y, matrix.get(x, y) ? BLACK : WHITE);</span><br><span class="line">           	&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">       	return image;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   	public static void writeToFile(BitMatrix matrix, String format, File file)</span><br><span class="line">           	throws IOException &#123;</span><br><span class="line">       	BufferedImage image = toBufferedImage(matrix);</span><br><span class="line">       	if (!ImageIO.write(image, format, file)) &#123;</span><br><span class="line">           	throw new IOException(&quot;Could not write an image of format &quot; + format + &quot; to &quot; + file);</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   	public static void writeToStream(BitMatrix matrix, String format, OutputStream stream)</span><br><span class="line">           	throws IOException &#123;</span><br><span class="line">       	BufferedImage image = toBufferedImage(matrix);</span><br><span class="line">       	if (!ImageIO.write(image, format, stream)) &#123;</span><br><span class="line">           	throw new IOException(&quot;Could not write an image of format &quot; + format);</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>写一个方法调用封装类中的writeToFile或writeToStream方法，再将生成的二维码上传到服务器上：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public void qrCodeUpload(HmsShowTopAndVersionDTO hmsShowTopAndVersionDTO,AppVersion av)&#123;</span><br><span class="line">     try &#123;</span><br><span class="line">         String content = hmsShowTopAndVersionDTO.getDownLoadUrl()+av.getAppVersionId();</span><br><span class="line">         log.info(&quot;content::&quot;+content);</span><br><span class="line">         String path = &quot;/path/path&quot;;</span><br><span class="line"></span><br><span class="line">         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();</span><br><span class="line"></span><br><span class="line">         Map hints = new HashMap();</span><br><span class="line">         hints.put(EncodeHintType.CHARACTER_SET, &quot;UTF-8&quot;);</span><br><span class="line">         BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, 400, 400,hints);</span><br><span class="line">         SimpleDateFormat parser = new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);</span><br><span class="line">         String timeFlag = parser.format(new Date());</span><br><span class="line">         File file1 = new File(path,timeFlag+&quot;.jpg&quot;);</span><br><span class="line">         MatrixToImageWriter.writeToFile(bitMatrix, &quot;jpg&quot;, file1);</span><br><span class="line"></span><br><span class="line">         InputStream in = new FileInputStream(file1);</span><br><span class="line">         UploadFileDTO upd = null;</span><br><span class="line">         try &#123;</span><br><span class="line">             upd = hmsUploadObjectService.uploadFile(in,timeFlag+&quot;.jpg&quot;);</span><br><span class="line">         &#125; catch (IOException e) &#123;</span><br><span class="line">             log.error(&quot;文件上传错误:&quot; + e.getMessage());</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         av.setQrCode(upd.getObjectUrl());</span><br><span class="line">     &#125; catch (Exception e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><em>需要注意的是如果写入二维码中的是一个url的话，一定要加上http，不然只能以文本显示，需要点击一下才能够跳转，只有加上http之后，才会默认跳转。</em></p>
+
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>Email：komatshu324@gmail.com</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</html>
